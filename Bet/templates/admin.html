@@ -1,0 +1,82 @@
+<!--delete.html-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+        <div class="row align-items-start">
+            <div class="col">
+                <nav class="navbar navbar-dark bg-dark mt-2">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#"><h4>This Section Is For NextToGo Matches</h4></a>
+                    </div>
+                </nav>
+
+                  {% for next in next_to_go %}
+                  <div class="content">
+                    <span class="text">
+                        <h6>
+                        <p>Home Team:
+                        {{next.home_team}}
+                        </h6>
+                    </span>
+                    <span class="text">
+                        <h6>
+                        <p>Away Team:
+                        {{next.away_team}}
+                        </h6>
+                    </span>
+                    <span class="text">
+                        <h6>
+                        <p>Competition:
+                        {{next.comp_name}}
+                        </h6>
+                    </span>
+                    </div>
+                    {% endfor %}
+
+            </div>
+
+
+
+
+
+            {% comment %} <div class="col">
+                <nav class="navbar navbar-dark bg-dark mt-2">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#"><h4>This Section Is For Top Matches</h4></a>
+                    </div>
+                  </nav>
+            </div>
+
+            <div class="col">
+                <nav class="navbar navbar-dark bg-dark mt-2">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#"><h4>This Section Is For Top Matches</h4></a>
+                    </div>
+                  </nav>
+            </div>
+
+            <div class="col">
+                <nav class="navbar navbar-dark bg-dark mt-2">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#"><h4>This Section Is For Top Matches</h4></a>
+                    </div>
+                  </nav>
+            </div> {% endcomment %}
+        </div>
+    </div>
+  </body>
+</html>

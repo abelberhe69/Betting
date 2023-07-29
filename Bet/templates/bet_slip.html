@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from pixner.net/sportsodds/sportsbet/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 13 Jun 2023 09:39:41 GMT -->
+
+    <!--Head Here-->
+        {% include 'includes/head.html' %}
+    <!--Head End-->
+
+<body>
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+          <div class="modal-content bg-dark text-white">
+            <div class="modal-header mt-5">
+              <h5 class="modal-title" id="exampleModalLabel">Ticket</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Your bet was successful!</p>
+              <p>Your ticket number is {{rand_num}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-xxl-2 col-xl-3 col-lg-3">
+        <div class="right__site__section display991">
+            <div class="betslip__wrap">
+                <h5 class="betslip__title">
+                    Betslip
+                </h5>
+                <div class="nav" id="nav-taboo" role="tablist">
+                    <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Single</button>
+                </div>
+                <div class="tab-content" id="nav-tabContent">
+                    
+                    <div class="tab-pane fade text-white show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                        <div class="multiple__components">
+
+                            {% comment %} <form method="POST" >
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="{{ form.home_team.id_for_label }}" class="form-label">Home Team</label>
+                                    {{ form.home_team }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.away_team.id_for_label }}" class="form-label">Away Team</label>
+                                    {{ form.away_team }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.comp_name.id_for_label }}" class="form-label">Competition Name</label>
+                                    {{ form.comp_name }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.odd_home.id_for_label }}" class="form-label">Home Odds</label>
+                                    {{ form.odd_home }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.odd_draw.id_for_label }}" class="form-label">Draw Odds</label>
+                                    {{ form.odd_draw }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.odd_away.id_for_label }}" class="form-label">Away Odds</label>
+                                    {{ form.odd_away }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.time.id_for_label }}" class="form-label">Time</label>
+                                    {{ form.time }}
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Save">
+                                <button type="submit" class="btn btn-danger"><a href="{% url 'nextToGoList' %}" style="color: white;">Cancel</a></button>
+                            </form> {% endcomment %}
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="multiple__items">
+                                {% for bet in bet_slip %}
+                                <div class="multiple__head">
+                                    <div class="multiple__left">
+                                        <span class="icons">
+                                            <i class="icon-football"></i>
+                                        </span>
+                                        <span>
+                                            <label for="{{ bet.home_team.id_for_label }}" class="form-label"></label>
+                                            {{ bet.home_team }}
+                                        </span>
+                                        <span>
+                                            Vs
+                                        </span>
+                                        <span>
+                                            <label for="{{ bet.away_team.id_for_label }}" class="form-label"></label>
+                                            {{ bet.away_team }}
+                                        </span>
+                                    </div>
+                                    <a href="#0" class="cros">
+                                        <i class="icon-cross"></i>
+                                    </a>
+                                </div>
+                                <div class="multiple__point">
+                                    <span class="pbox">
+                                        {{ bet.odd_home }}
+                                    </span>
+                                    <span class="pbox">
+                                        {{ bet.odd_draw }}
+                                    </span>
+                                    <span class="pbox">
+                                        {{ bet.odd_away }}
+                                    </span>
+                                </div><hr>
+                                {% endfor %}
+                            </div>
+                        </form>
+
+                            <div class="total__odds">
+                                <div class="total__head">
+                                    <h6 class="odd">
+                                        Total Odds
+                                    </h6>
+                                    <span>
+                                        25
+                                    </span>
+                                </div>
+                                <input type="text" class="wrapper" placeholder="Stake amount, $" style="height: 40px; width:300px;">
+                                    <div class="result">
+                                    </div>
+                                    <div class="buttons mt-4">
+                                      <button type="button" class="btn btn-light btn-block">5</button>
+                                      <button type="button" class="btn btn-light btn-block" style="margin-left: 15px;">10</button>
+                                      <button type="button" class="btn btn-light btn-block" style="margin-left:15px;">50</button>
+                                      <button type="button" class="btn btn-light btn-block" style="margin-left:15px;">100</button>
+                                    </div>
+                                  </input>
+                            </div>
+                            {% if user.is_authenticated %}
+                            <div class="d-block">
+                                <a type="button" href="" class="btn btn-success btn-block"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Place Bet
+                                </a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>    
